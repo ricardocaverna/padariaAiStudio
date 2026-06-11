@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Padaria - Tradição & Sabor Quentinho Todo Dia</title>
+  <!-- Google Fonts: Montserrat (sans-serif), Cormorant Garamond (serif), JetBrains Mono (for interactive monitor) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Montserrat', 'sans-serif'],
+            serif: ['Cormorant Garamond', 'serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            cream: {
+              50: '#fdfaf6',       // Base soft warm white/cream background
+              100: '#f7f2eb',      // Warm helper cream / secondary light warm grey
+              200: '#eee8de',      // Medium subtle cream
+              350: '#e5e0d8',      // Theme border/divider color (#e5e0d8)
+              900: '#451a03',      // Theme dark / primary dark brown (#451a03)
+            },
+            amber: {
+              500: '#d97706',      // Golden highlight accent
+              600: '#b45309',
+              700: '#78350f',
+            },
+            rust: {
+              light: '#8b5e3c',    // Secondary/medium brown text
+              DEFAULT: '#8b5e3c',
+              dark: '#5a4033',     // Secondary dark brown text
+              deep: '#451a03',     // Primary dark text/elements (#451a03)
+            }
+          },
+        }
+      }
+    }
+  </script>
+  
+  <!-- Lucide Icons (CDN) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Custom Style overrides and custom scrolling/navbar styling -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-cream-50 text-rust-deep font-sans antialiased min-h-screen flex flex-col selection:bg-rust-light selection:text-white">
+
+  <!-- CAPA HERO / HEADER -->
+  <header id="inicio" class="relative min-h-screen flex flex-col justify-between overflow-hidden">
+    <!-- Imagem de Fundo (Panorâmica da padaria) -->
+    <div class="absolute inset-0 z-0">
+      <img src="assets/panoramica_da_padaria-1.png" alt="Interior aconchegante da Padaria" class="w-full h-full object-cover filter brightness-[0.35] scale-105 transform transition duration-[10s] hover:scale-100" referrerPolicy="no-referrer">
+      <div class="absolute inset-0 bg-gradient-to-b from-rust-deep/60 via-transparent to-cream-50"></div>
+    </div>
+
+    <!-- NAVBAR PERSISTENTE -->
+    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-6 md:px-12" id="main-nav">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        
+        <!-- Logo e Título -->
+        <a href="#inicio" class="flex items-center gap-3 group focus:outline-none" id="nav-logo-link">
+          <img src="assets/logo.png" alt="Logo Padaria" class="h-10 w-10 md:h-12 md:w-12 rounded-full border border-cream-100/30 bg-white/10 backdrop-blur-sm p-0.5 transform transition group-hover:rotate-6">
+          <span class="font-serif font-bold text-lg md:text-2xl text-cream-50 tracking-wider transition group-hover:text-cream-200">
+            PADARIA
+          </span>
+        </a>
+
+        <!-- Links Desktop -->
+        <div class="hidden md:flex items-center gap-8 font-medium">
+          <a href="#produtos" class="text-cream-100 hover:text-amber-500 transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-amber-500 after:transition-all hover:after:w-full">Destaques</a>
+          <a href="#tradicao" class="text-cream-100 hover:text-amber-500 transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-amber-500 after:transition-all hover:after:w-full">Nossa História</a>
+          <a href="#monitor" class="text-cream-100 hover:text-amber-500 transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-amber-500 after:transition-all hover:after:w-full flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> Forno Real</a>
+          <a href="#informacoes" class="text-cream-100 hover:text-amber-500 transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-amber-500 after:transition-all hover:after:w-full">Visite-nos</a>
+          <a href="https://wa.me/5519111111111?text=Olá!%20Gostaria%20de%20fazer%20uma%20encomenda!" target="_blank" rel="noopener noreferrer" class="bg-amber-500 hover:bg-amber-600 text-white px-5 py-2.5 rounded-full font-semibold transition shadow-md hover:shadow-lg flex items-center gap-2">
+            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Encomendar
+          </a>
+        </div>
+
+        <!-- Botão Menu Mobile -->
+        <button type="button" id="mobile-menu-btn" class="md:hidden text-cream-50 hover:text-amber-500 p-2 focus:outline-none transition-colors" aria-label="Toggle Menu">
+          <i data-lucide="menu" class="w-7 h-7" id="menu-icon-closed"></i>
+          <i data-lucide="x" class="w-7 h-7 hidden" id="menu-icon-opened"></i>
+        </button>
+
+      </div>
+
+      <!-- Menu Lateral/Mobile Drawer (Fundo Sólido para não misturar com o fundo) -->
+      <div id="mobile-menu" class="hidden fixed inset-x-0 top-[72px] bg-cream-900 border-t border-rust-dark shadow-2xl p-6 transition-all duration-300 opacity-0 transform -translate-y-4 md:hidden z-40">
+        <div class="flex flex-col gap-5 font-semibold text-cream-100">
+          <a href="#produtos" class="mobile-nav-link flex items-center gap-3 py-2 border-b border-rust-dark hover:text-amber-500 transition-colors">
+            <i data-lucide="store" class="w-5 h-5 text-amber-500"></i> Destaques da Vitrine
+          </a>
+          <a href="#tradicao" class="mobile-nav-link flex items-center gap-3 py-2 border-b border-rust-dark hover:text-amber-500 transition-colors">
+            <i data-lucide="heart" class="w-5 h-5 text-amber-500"></i> Sobre Nós / Tradição
+          </a>
+          <a href="#monitor" class="mobile-nav-link flex items-center gap-3 py-2 border-b border-rust-dark hover:text-amber-500 transition-colors">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span> Fornadas de Hoje
+          </a>
+          <a href="#informacoes" class="mobile-nav-link flex items-center gap-3 py-2 border-b border-rust-dark hover:text-amber-500 transition-colors">
+            <i data-lucide="map-pin" class="w-5 h-5 text-amber-500"></i> Horários e Localização
+          </a>
+          <a href="https://wa.me/5519111111111?text=Olá!%20Gostaria%20de%20fazer%20uma%20encomenda!" target="_blank" rel="noopener noreferrer" class="bg-amber-500 hover:bg-amber-600 text-white py-3.5 px-6 rounded-xl font-bold text-center transition flex items-center justify-center gap-2 mt-2 shadow-lg">
+            <i data-lucide="phone" class="w-5 h-5"></i> Fale Conosco no WhatsApp
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- CONTEÚDO HERO CENTRAL -->
+    <div class="relative z-10 flex-grow max-w-5xl mx-auto px-6 flex flex-col justify-center items-center text-center mt-20">
+      <div class="animate-fade-in space-y-6">
+        <!-- Logo Grande no Hero -->
+        <div class="flex justify-center mb-2">
+          <div class="rounded-full bg-cream-100/90 p-4 shadow-2xl backdrop-blur-sm border-2 border-rust-light/20">
+            <img src="assets/logo.png" alt="Logotipo Padaria" class="h-20 w-20 md:h-28 md:w-28 rounded-full">
+          </div>
+        </div>
+        
+        <p class="text-amber-500 font-medium tracking-widest text-xs uppercase md:text-sm">
+          Fermentação Natural & Receita de Família
+        </p>
+        
+        <h1 class="font-serif font-bold text-4xl md:text-6xl text-cream-50 leading-tight">
+          O sabor único do pão feito <br><span class="text-amber-500 italic">com calma e carinho</span>
+        </h1>
+        
+        <p class="text-cream-200 max-w-xl mx-auto text-sm md:text-lg font-light leading-relaxed">
+          Nossa paixão é resgatar as receitas rústicas, unindo ingredientes selecionados, fermentação lenta e muita dedicação para sua mesa todos os dias.
+        </p>
+
+        <div class="pt-6 flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a href="#produtos" class="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-white font-bold py-3.5 px-8 rounded-full shadow-lg hover:shadow-xl transition flex items-center justify-center gap-2">
+            Ver Nossa Vitrine <i data-lucide="arrow-down" class="w-4 h-4"></i>
+          </a>
+          <a href="#monitor" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-cream-50 hover:text-white font-semibold py-3.5 px-8 rounded-full border border-cream-100/30 backdrop-blur-sm transition flex items-center justify-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></span> Monitor do Forno
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTIFICAÇÃO DE FORNADA EM TEMPO REAL RÁPIDA NO RODAPÉ DO HERO -->
+    <div class="relative z-10 w-full bg-cream-50/90 backdrop-blur-md p-4 border-t border-cream-200">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left px-6">
+        <div class="flex items-center gap-3">
+          <span class="flex h-3 w-3 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+          </span>
+          <span class="text-sm font-medium text-rust-dark font-serif" id="oven-quick-status">
+            Carregando o monitor de forno...
+          </span>
+        </div>
+        <div class="flex items-center gap-6 text-xs md:text-sm font-mono text-rust-light" id="oven-quick-time">
+          Próxima fornada às: <span class="font-bold text-rust-dark select-all">06:00 e 17:00</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SEÇÃO 1: DESTAQUES DE PRODUTOS -->
+  <section id="produtos" class="py-20 px-6 md:px-12 bg-cream-100 relative">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Cabeçalho da Seção -->
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div class="inline-flex items-center gap-2 bg-cream-200 border border-rust-light/20 text-rust-dark text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+          <i data-lucide="cookie" class="w-3.5 h-3.5"></i> Receitas Especiais
+        </div>
+        <h2 class="font-serif font-bold text-3xl md:text-4xl text-rust-deep">
+          Nossa Vitrine Especial
+        </h2>
+        <div class="w-16 h-1 bg-amber-500 mx-auto rounded-full"></div>
+        <p class="text-rust-light max-w-xl mx-auto text-sm md:text-base">
+          De cascas rústicas e crocantes a massas macias e doces. Conheça as delícias feitas artesanalmente que saem do nosso forno todos os dias.
+        </p>
+      </div>
+
+      <!-- Bento-style Grid dos Produtos -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        
+        <!-- Pão Francês -->
+        <div id="card-pao-frances" class="bg-white rounded-3xl overflow-hidden border border-cream-350 card-shadow hover:shadow-[0_15px_45px_-10px_rgba(69,26,3,0.18)] transition-all duration-300 flex flex-col sm:flex-row group">
+          <div class="sm:w-1/2 relative overflow-hidden h-48 sm:h-auto min-h-[180px]">
+            <img src="assets/pao_frances1.png" alt="Pães Franceses" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-500" referrerPolicy="no-referrer">
+            <span class="absolute top-3 left-3 bg-[#451a03] text-[#fdfaf6] font-mono text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-sm">
+              Fornada Diária
+            </span>
+          </div>
+          <div class="sm:w-1/2 p-6 flex flex-col justify-between">
+            <div class="space-y-3">
+              <span class="text-[10px] font-bold tracking-widest text-[#8b5e3c] uppercase">O queridinho do café</span>
+              <h3 class="font-serif font-bold text-xl text-[#451a03]">Pão Francês</h3>
+              <p class="text-rust-light text-xs md:text-sm leading-relaxed">
+                Super crocante por fora e com um miolo extremamente macio. Feito com cuidado especial para manter a verdadeira tradição da nossa mesa brasileira.
+              </p>
+            </div>
+            <div class="mt-4 pt-4 border-t border-cream-350 flex items-center justify-between">
+              <span class="text-xs font-mono text-amber-500 font-bold flex items-center gap-1.5">
+                <i data-lucide="clock" class="w-3.5 h-3.5"></i> Quentinho: 06h e 17h
+              </span>
+              <a href="https://wa.me/5519111111111?text=Olá!%20Gostaria%20de%20reservar%20Pães%20Franceses!" target="_blank" rel="noopener noreferrer" class="text-rust-light group-hover:text-amber-500 transition-colors font-semibold text-xs flex items-center gap-1 hover:underline">
+                Encomendar <i data-lucide="chevron-right" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pão Italiano -->
+        <div id="card-pao-italiano" class="bg-white rounded-3xl overflow-hidden border border-cream-350 card-shadow hover:shadow-[0_15px_45px_-10px_rgba(69,26,3,0.18)] transition-all duration-300 flex flex-col sm:flex-row group">
+          <div class="sm:w-1/2 relative overflow-hidden h-48 sm:h-auto min-h-[180px]">
+            <img src="assets/pao_italiano.png" alt="Pão Italiano" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-500" referrerPolicy="no-referrer">
+            <span class="absolute top-3 left-3 bg-[#d97706] text-[#fdfaf6] font-mono text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-sm">
+              Fermentação Lenta
+            </span>
+          </div>
+          <div class="sm:w-1/2 p-6 flex flex-col justify-between">
+            <div class="space-y-3">
+              <span class="text-[10px] font-bold tracking-widest text-[#8b5e3c] uppercase">Opção Natural & Rústica</span>
+              <h3 class="font-serif font-bold text-xl text-[#451a03]">Pão Italiano</h3>
+              <p class="text-rust-light text-xs md:text-sm leading-relaxed">
+                Feito com fermento natural cultivado em casa (Levain). Possui casca grossa e crocante com miolo aerado que combina perfeitamente com azeites e sopas.
+              </p>
+            </div>
+            <div class="mt-4 pt-4 border-t border-cream-350 flex items-center justify-between">
+              <span class="text-xs font-mono text-rust-light">
+                Peso aprox: 500g
+              </span>
+              <a href="https://wa.me/5519111111111?text=Olá!%20Gostaria%20de%20encomendar%20um%20Pão%20Italiano!" target="_blank" rel="noopener noreferrer" class="text-rust-light group-hover:text-amber-500 transition-colors font-semibold text-xs flex items-center gap-1 hover:underline">
+                Encomendar <i data-lucide="chevron-right" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pões Doces -->
+        <div id="card-pao-doce" class="bg-white rounded-3xl overflow-hidden border border-cream-350 card-shadow hover:shadow-[0_15px_45px_-10px_rgba(69,26,3,0.18)] transition-all duration-300 flex flex-col sm:flex-row group">
+          <div class="sm:w-1/2 relative overflow-hidden h-48 sm:h-auto min-h-[180px]">
+            <img src="assets/pao_doce.png" alt="Pães Doces" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-500" referrerPolicy="no-referrer">
+            <span class="absolute top-3 left-3 bg-[#451a03] text-[#fdfaf6] font-mono text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-sm">
+              Mais Vendido
+            </span>
+          </div>
+          <div class="sm:w-1/2 p-6 flex flex-col justify-between">
+            <div class="space-y-3">
+              <span class="text-[10px] font-bold tracking-widest text-[#8b5e3c] uppercase">Finais de Tarde Doces</span>
+              <h3 class="font-serif font-bold text-xl text-[#451a03]">Pães Doces</h3>
+              <p class="text-rust-light text-xs md:text-sm leading-relaxed">
+                Nossas tranças doces e roscas artesanais preparadas com calda leve e generosa cobertura de coco ralado fino. Uma delícia para acompanhar chás ou café da tarde.
+              </p>
+            </div>
+            <div class="mt-4 pt-4 border-t border-cream-350 flex items-center justify-between">
+              <span class="text-xs font-mono text-rust-light">
+                Com Coco Fresco
+              </span>
+              <a href="https://wa.me/5519111111111?text=Olá!%20Gostaria%20de%20reservar%20Pães%20Doces%20com%20Coco!" target="_blank" rel="noopener noreferrer" class="text-rust-light group-hover:text-amber-500 transition-colors font-semibold text-xs flex items-center gap-1 hover:underline">
+                Encomendar <i data-lucide="chevron-right" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Broas de Milho -->
+        <div id="card-broa-milho" class="bg-white rounded-3xl overflow-hidden border border-cream-350 card-shadow hover:shadow-[0_15px_45px_-10px_rgba(69,26,3,0.18)] transition-all duration-300 flex flex-col sm:flex-row group">
+          <div class="sm:w-1/2 relative overflow-hidden h-48 sm:h-auto min-h-[180px]">
+            <img src="assets/broas_de_milho.png" alt="Broas de Milho" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-500" referrerPolicy="no-referrer">
+            <span class="absolute top-3 left-3 bg-[#5a4033] text-[#fdfaf6] font-mono text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-sm">
+              Receita Vovó
+            </span>
+          </div>
+          <div class="sm:w-1/2 p-6 flex flex-col justify-between">
+            <div class="space-y-3">
+              <span class="text-[10px] font-bold tracking-widest text-[#8b5e3c] uppercase">Sabor de Infância</span>
+              <h3 class="font-serif font-bold text-xl text-[#451a03]">Broas de Milho</h3>
+              <p class="text-rust-light text-xs md:text-sm leading-relaxed">
+                Broinhas tradicionais de fubá, densas e levemente adocicadas, rachadas à perfeição em forno bem quente. O aroma autêntico das fazendas mineiras e paulistas diretamente na cidade.
+              </p>
+            </div>
+            <div class="mt-4 pt-4 border-t border-cream-350 flex items-center justify-between">
+              <span class="text-xs font-mono text-rust-light">
+                100% Caseira
+              </span>
+              <a href="https://wa.me/5519111111111?text=Olá!%20Gostaria%20de%20encomendar%20Broas%20de%20Milho!" target="_blank" rel="noopener noreferrer" class="text-rust-light group-hover:text-amber-500 transition-colors font-semibold text-xs flex items-center gap-1 hover:underline">
+                Encomendar <i data-lucide="chevron-right" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Caixa de Destaque Adicional - Balcão com Pães -->
+      <div class="mt-16 bg-cream-200 border border-cream-350 rounded-3xl p-6 md:p-12 shadow-inner flex flex-col lg:flex-row items-center gap-8 overflow-hidden relative">
+        <div class="lg:w-7/12 space-y-6 z-10">
+          <span class="inline-block bg-amber-500 text-white font-bold text-xs uppercase tracking-widest px-3 py-1 rounded-md">
+            Visite nossa Loja Física
+          </span>
+          <h3 class="font-serif font-bold text-2xl md:text-4xl text-rust-deep leading-tight">
+            Venha sentir o aroma <br>do pão saindo do forno
+          </h3>
+          <p class="text-rust-dark leading-relaxed text-sm md:text-base">
+            Todos os dias, nossa vitrine e balcão se enchem de opções fresquinhas para o seu café da manhã e da tarde. Nosso espaço é aconchegante, feito pensando no prazer de saborear um pão lento com um cafezinho passado à moda antiga.
+          </p>
+          <div class="flex flex-wrap gap-4 pt-2">
+            <div class="flex items-center gap-2 bg-cream-50 px-4 py-2 rounded-xl text-xs md:text-sm border border-cream-350 font-medium">
+              <i data-lucide="coffee" class="w-4 h-4 text-amber-500"></i> Café Quente Coado
+            </div>
+            <div class="flex items-center gap-2 bg-cream-50 px-4 py-2 rounded-xl text-xs md:text-sm border border-cream-350 font-medium">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-500"></i> Ingredientes Premium
+            </div>
+            <div class="flex items-center gap-2 bg-cream-50 px-4 py-2 rounded-xl text-xs md:text-sm border border-cream-350 font-medium">
+              <i data-lucide="wind" class="w-4 h-4 text-amber-500"></i> Estacionamento Fácil
+            </div>
+          </div>
+        </div>
+        <div class="lg:w-5/12 w-full h-64 lg:h-80 relative rounded-2xl overflow-hidden shadow-md">
+          <img src="assets/balcao_com_paes.png" alt="Balcão da padaria lotado de pães fresquinhos" class="w-full h-full object-cover filter brightness-95 hover:scale-105 transition duration-500" referrerPolicy="no-referrer">
+          <div class="absolute inset-0 bg-gradient-to-t from-rust-dark/50 to-transparent"></div>
+          <span class="absolute bottom-4 right-4 text-white text-xs bg-black/45 px-3 py-1 rounded-md backdrop-blur-sm z-10 flex items-center gap-1.5 font-mono">
+            <i data-lucide="camera" class="w-3.5 h-3.5"></i> Nosso Balcão Real
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SEÇÃO 2: SOBRE NÓS / TRADIÇÃO -->
+  <section id="tradicao" class="py-24 px-6 md:px-12 bg-cream-50 relative overflow-hidden">
+    <!-- Decoração Orgânica de Trigo no fundo (Opcional, estilo limpo) -->
+    <div class="absolute right-0 bottom-0 opacity-5 pointer-events-none transform translate-y-12 translate-x-12">
+      <i data-lucide="leaf" class="w-96 h-96 text-rust-light"></i>
+    </div>
+    
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      
+      <!-- Imagem Descritiva da História -->
+      <div class="lg:col-span-5 space-y-4 animate-fade-in order-2 lg:order-1">
+        <div class="relative">
+          <div class="absolute -top-4 -left-4 w-24 h-24 bg-cream-200 -z-10 rounded-full"></div>
+          <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-cream-200 -z-10 rounded-full"></div>
+          
+          <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white transform hover:rotate-1 transition-all duration-300">
+            <!-- Usamos de novo a bela imagem clássica panorâmica ou de trigo -->
+            <img src="assets/panoramica_da_padaria-1.png" alt="Panorâmica da Padaria Rústica" class="w-full h-96 object-cover" referrerPolicy="no-referrer">
+          </div>
+          
+          <!-- Selo Flutuante de Tradição -->
+          <div class="absolute -bottom-6 -left-6 bg-rust-dark text-cream-50 p-5 rounded-2xl shadow-xl max-w-[200px] border border-rust-light/30">
+            <p class="font-serif font-bold text-2xl text-amber-500">100%</p>
+            <p class="text-xs text-cream-200 leading-normal">Artesanal & Lento - Fermentado do jeito certo</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conteúdo de Texto e Princípios -->
+      <div class="lg:col-span-7 space-y-8 order-1 lg:order-2">
+        <div class="space-y-4">
+          <div class="inline-flex items-center gap-2 bg-cream-200 border border-rust-light/20 text-[#8C5A30] text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+            <i data-lucide="award" class="w-3.5 h-3.5"></i> Tradição Familiar
+          </div>
+          <h2 class="font-serif font-bold text-3xl md:text-5xl text-rust-deep leading-tight">
+            A Arte da Fermentação Lenta, <br>Passada de Família em Família
+          </h2>
+          <div class="w-20 h-1 bg-amber-500 rounded-full"></div>
+        </div>
+
+        <div class="space-y-4 text-rust-dark text-sm md:text-base leading-relaxed">
+          <p>
+            Na <strong>Padaria</strong>, cada receita carrega a memória de nossas origens rústicas. Acreditamos que o segredo de um pão inesquecível reside no ingrediente mais difícil de se encontrar no mundo moderno: <strong>o tempo</strong>.
+          </p>
+          <p>
+            Nossa cozinha trabalha com base em <strong>longas fermentações</strong> de no mínimo 24 horas. Esse processo natural, alimentado por nossa própria cultura de leveduras selvagens (Levain/Lievito), permite que o pão atinja níveis superiores de sabor, aroma e uma digestabilidade incrivelmente leve.
+          </p>
+          <p>
+            Não utilizamos conservantes químicos, realçadores artificiais ou misturas industriais rápidas. Cada dobra na massa, cada inspeção no forno e cada trigo polvilhado é feito manualmente com o mesmo aconchego e tradição de gerações passadas.
+          </p>
+        </div>
+
+        <!-- Bento Metas/Valores -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4">
+          <div class="bg-cream-100 p-5 rounded-2xl border border-cream-200 flex flex-col justify-between hover:border-rust-light transition">
+            <i data-lucide="cookie" class="w-8 h-8 text-amber-500 mb-3"></i>
+            <div>
+              <h4 class="font-serif font-bold text-base text-rust-deep">Sabor Puro</h4>
+              <p class="text-xs text-rust-light mt-1">Trigo premium integral e ingredientes 100% naturais.</p>
+            </div>
+          </div>
+          <div class="bg-cream-100 p-5 rounded-2xl border border-cream-200 flex flex-col justify-between hover:border-rust-light transition">
+            <i data-lucide="smile" class="w-8 h-8 text-amber-500 mb-3"></i>
+            <div>
+              <h4 class="font-serif font-bold text-base text-rust-deep">Saúde Coletiva</h4>
+              <p class="text-xs text-rust-light mt-1">Fácil digestão com processos biológicos naturais.</p>
+            </div>
+          </div>
+          <div class="bg-cream-100 p-5 rounded-2xl border border-cream-200 flex flex-col justify-between hover:border-rust-light transition">
+            <i data-lucide="heart" class="w-8 h-8 text-amber-500 mb-3"></i>
+            <div>
+              <h4 class="font-serif font-bold text-base text-rust-deep">Feito Amor</h4>
+              <p class="text-xs text-rust-light mt-1">Dedicamos carinho em cada etapa, do trigo ao forno.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SEÇÃO INTERATIVA DESLUMBRANTE: MONITOR EM TEMPO REAL DO FORNO -->
+  <section id="monitor" class="py-20 px-6 md:px-12 bg-cream-900 text-cream-100 relative overflow-hidden">
+    <!-- Detalhes de Background Escuro -->
+    <div class="absolute inset-0 bg-gradient-to-r from-rust-deep via-cream-900 to-rust-deep opacity-90 z-0"></div>
+    
+    <div class="max-w-6xl mx-auto relative z-10">
+      
+      <!-- Cabeçalho -->
+      <div class="text-center max-w-2xl mx-auto mb-14 space-y-4">
+        <span class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 text-amber-500 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider">
+          <span class="w-2.1 h-2 bg-red-500 rounded-full animate-ping mr-1"></span> Monitor de Forno ao Vivo
+        </span>
+        <h2 class="font-serif font-bold text-3xl md:text-5xl text-cream-50 leading-tight">
+          Próximas Fornadas Quentes
+        </h2>
+        <p class="text-cream-250 text-xs md:text-sm max-w-md mx-auto">
+          Nosso forno trabalha com maestria. Acompanhe abaixo o estado real do cozimento e calcule sua ida para comer o pão francês na hora mais perfeita!
+        </p>
+      </div>
+
+      <!-- Bento Painel do Monitor -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        
+        <!-- Bloco Principal do Cronômetro -->
+        <div class="lg:col-span-7 bg-black/30 border border-rust-dark rounded-3xl p-6 md:p-10 flex flex-col justify-between space-y-8 shadow-2xl backdrop-blur-sm">
+          
+          <div class="flex items-center justify-between">
+            <div class="space-y-1">
+              <span class="text-xs font-mono text-rust-light uppercase tracking-wider">Monitoramento Digital</span>
+              <h3 class="font-serif font-bold text-2xl text-cream-50">Contagem de Tempo</h3>
+            </div>
+            <!-- Indicador do Estado Visual -->
+            <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cream-50/10 text-cream-50 text-xs font-semibold border border-cream-200/10" id="oven-visual-status-pill">
+              <span class="w-2.5 h-2.5 rounded-full bg-yellow-500" id="oven-pill-indicator"></span>
+              <span id="oven-pill-text">Analisando Relógio</span>
+            </div>
+          </div>
+
+          <!-- Contador Digital Gigante -->
+          <div class="text-center py-6">
+            <div class="font-mono text-5xl md:text-7xl font-bold tracking-widest text-[#E8DEC9] transition-all" id="countdown-clock">
+              00:00:00
+            </div>
+            <p class="text-xs text-rust-light font-mono mt-3 uppercase tracking-widest" id="countdown-label">
+              Carregando cronômetro...
+            </p>
+          </div>
+
+          <!-- Termômetro de Forno Realista -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between text-xs font-mono">
+              <span class="text-rust-light text-left">Temperatura Estimada dos Fornos</span>
+              <span class="text-amber-500 font-bold" id="oven-temp-display">240°C</span>
+            </div>
+            <div class="w-full bg-cream-100/10 h-3.5 rounded-full overflow-hidden border border-cream-200/5 relative">
+              <div class="bg-gradient-to-r from-yellow-500 via-orange-500 to-red-650 h-full rounded-full w-[80%] transition-all duration-[2000ms]" id="oven-progressbar"></div>
+            </div>
+            <p class="text-[11px] text-rust-light leading-relaxed text-center italic">
+              *A temperatura ideal para o Pão Francês com casca perfeita é de 220°C a 240°C no forno a lastro.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Bloco Auxiliar Informativo de Fornadas -->
+        <div class="lg:col-span-5 flex flex-col justify-between gap-6">
+          
+          <!-- State Display Card -->
+          <div class="bg-black/20 border border-rust-dark rounded-3xl p-6 flex flex-col items-center justify-center text-center flex-grow p-6 text-cream-100 shadow-md">
+            <!-- Icon / Animation Element -->
+            <div class="w-20 h-20 rounded-full bg-amber-500/5 border border-amber-500/20 flex items-center justify-center mb-4 relative" id="oven-icon-container">
+              <!-- Radial Glow -->
+              <span class="absolute inset-0 rounded-full bg-amber-500/10 scale-125 animate-pulse"></span>
+              <i data-lucide="flame" class="w-10 h-10 text-amber-500 animate-bounce" id="oven-core-icon"></i>
+            </div>
+            <h4 class="font-serif font-bold text-lg text-cream-50" id="status-detailed-title">
+              Fornos Aquecendo
+            </h4>
+            <p class="text-xs text-rust-light leading-relaxed max-w-xs mt-2" id="status-detailed-desc">
+              Os panificadores já preparam a massa e o forno está subindo a temperatura para assar a próxima porção!
+            </p>
+          </div>
+
+          <!-- Cronograma Fixo -->
+          <div class="bg-[#21160E] border border-rust-dark rounded-3xl p-6 shadow-md">
+            <h4 class="font-serif font-bold text-base text-cream-50 mb-4 flex items-center gap-2">
+              <i data-lucide="calendar" class="w-4.5 h-4.5 text-amber-500"></i> Cronograma Diário (Fornadas)
+            </h4>
+            <div class="space-y-3 font-medium text-xs md:text-sm">
+              <div class="flex justify-between items-center bg-black/10 p-2.5 rounded-xl border border-rust-dark/40">
+                <span class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-amber-500"></span> Primeira Fornada da Manhã
+                </span>
+                <span class="font-mono font-bold text-amber-500">06:00 BRT</span>
+              </div>
+              <div class="flex justify-between items-center bg-black/10 p-2.5 rounded-xl border border-rust-dark/40">
+                <span class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-amber-500"></span> Segunda Fornada da Tarde
+                </span>
+                <span class="font-mono font-bold text-amber-500">17:00 BRT</span>
+              </div>
+            </div>
+            <p class="text-[11px] text-rust-light leading-tight mt-4 text-center">
+              Recomendamos chegar 10 minutos antes para garantir sua vaga na fila quente!
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SEÇÃO 3: INFORMAÇÕES PRÁTICAS & CONTATO -->
+  <section id="informacoes" class="py-24 px-6 md:px-12 bg-cream-200">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Cabeçalho de Seção -->
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div class="inline-flex items-center gap-2 bg-cream-50 border border-rust-light/20 text-[#8C5A30] text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+          <i data-lucide="map" class="w-3.5 h-3.5"></i> Venha Visitar a Padaria
+        </div>
+        <h2 class="font-serif font-bold text-3xl md:text-4xl text-rust-deep">
+          Horários & Localização
+        </h2>
+        <div class="w-16 h-1 bg-amber-500 mx-auto rounded-full"></div>
+      </div>
+
+      <!-- Grid de 2 Colunas: Horários e Informações Fisicas à esquerda, Mapa à direita -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
+        
+        <!-- LADO ESQUERDO: INFOS E CONTATOS -->
+        <div class="lg:col-span-5 flex flex-col justify-between space-y-8">
+          
+          <!-- Bloco 1: Horários Estilizados -->
+          <div class="bg-cream-50 rounded-3xl p-6 md:p-8 border border-cream-350 shadow-md space-y-6">
+            <h3 class="font-serif font-bold text-xl text-rust-deep flex items-center gap-2.5">
+              <i data-lucide="clock-4" class="text-amber-500 w-5.5 h-5.5"></i> Horários de Funcionamento
+            </h3>
+            <div class="space-y-4 text-sm font-medium">
+              
+              <div class="flex items-center justify-between pb-3 border-b border-cream-200">
+                <div class="space-y-0.5">
+                  <p class="text-rust-deep font-semibold">Segunda a Sexta-feira</p>
+                  <p class="text-xs text-rust-light font-normal">Dias de semana comerciais</p>
+                </div>
+                <div class="text-right">
+                  <span class="font-mono text-[#4A2B11] font-bold bg-[#FAF7F2] border border-cream-200 py-1.5 px-3 rounded-lg text-xs md:text-sm">
+                    06:00 - 20:00
+                  </span>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between pb-3 border-b border-cream-200">
+                <div class="space-y-0.5">
+                  <p class="text-rust-deep font-semibold">Sábados</p>
+                  <p class="text-xs text-rust-light font-normal">Finais de semana</p>
+                </div>
+                <div class="text-right">
+                  <span class="font-mono text-[#4A2B11] font-bold bg-[#FAF7F2] border border-cream-200 py-1.5 px-3 rounded-lg text-xs md:text-sm">
+                    06:00 - 19:00
+                  </span>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <div class="space-y-0.5">
+                  <p class="text-rust-deep font-semibold">Domingos e Feriados</p>
+                  <p class="text-xs text-rust-light font-normal">Café da manhã de descanso</p>
+                </div>
+                <div class="text-right">
+                  <span class="font-mono text-[#4A2B11] font-bold bg-[#FAF7F2] border border-cream-200 py-1.5 px-3 rounded-lg text-xs md:text-sm">
+                    06:00 - 18:00
+                  </span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Bloco 2: Endereço & Links Mapas -->
+          <div class="bg-cream-50 rounded-3xl p-6 md:p-8 border border-cream-350 shadow-md space-y-6">
+            <h3 class="font-serif font-bold text-xl text-rust-deep flex items-center gap-2.5">
+              <i data-lucide="map-pin" class="text-amber-500 w-5.5 h-5.5"></i> Nosso Endereço Físico
+            </h3>
+            
+            <div class="space-y-4 text-xs md:text-sm leading-relaxed text-rust-dark">
+              <p class="font-semibold text-rust-deep leading-normal">
+                R. Nossa Sra. Aparecida, 5<br>
+                Bairro São Lázaro, São João da Boa Vista - SP<br>
+                CEP: 13870-470
+              </p>
+              <div class="pt-3 border-t border-cream-200 flex flex-wrap gap-3">
+                <a href="https://maps.google.com/?q=R.+Nossa+Sra.+Aparecida,+5+-+São+Lazaro,+São+João+da+Boa+Vista+-+SP,+13870-470" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-xs font-bold text-amber-500 hover:text-amber-600 hover:underline">
+                  <i data-lucide="navigation-2" class="w-4 h-4"></i> Rota no Google Maps
+                </a>
+                <span class="text-cream-350">|</span>
+                <a href="https://wa.me/5519111111111?text=Olá!%20Como%20faço%20para%20chegar%20na%2520padaria?" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-xs font-semibold text-rust-light hover:text-amber-500">
+                  <i data-lucide="phone-call" class="w-4 h-4"></i> (19) 1111-1111
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- LADO DIREITO: MAPA INTERATIVO SIMULADO -->
+        <div class="lg:col-span-7 flex flex-col">
+          <div class="bg-cream-50 rounded-3xl p-3 border border-cream-350 shadow-lg flex-grow flex flex-col overflow-hidden relative min-h-[300px]">
+            
+            <!-- Barra Superior do GPS Simulador -->
+            <div class="bg-cream-200 border border-cream-350 py-2.5 px-4 rounded-2xl flex items-center justify-between gap-3 text-xs font-medium text-rust-dark mb-3">
+              <div class="flex items-center gap-2 overflow-hidden">
+                <span class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse flex-shrink-0"></span>
+                <span class="truncate font-mono">GPS: -21.97931, -46.79247</span>
+              </div>
+              <span class="bg-[#FAF7F2] font-semibold text-[10px] px-2.5 py-1 rounded-md border border-cream-350 uppercase select-all">São Lázaro</span>
+            </div>
+
+            <!-- Mapa Real / Ilustrado Interativo -->
+            <div class="relative rounded-2xl flex-grow overflow-hidden border border-cream-200 bg-[#E3DEC3] flex items-center justify-center select-none" id="simulated-map">
+              <!-- Mapa Ilustrado por Elementos HTML -->
+              <div class="absolute inset-0 bg-[#EAE5D1] overflow-hidden opacity-90">
+                <!-- Ruas representadas por linhas cinzas -->
+                <div class="absolute bg-white h-7 w-full top-1/4 transform -rotate-1 shadow-sm"></div>
+                <div class="absolute bg-white h-8 w-full bottom-1/3 transform rotate-3 shadow-sm"></div>
+                <div class="absolute bg-white w-8 h-full left-1/4 transform -rotate-12 shadow-sm"></div>
+                <div class="absolute bg-white w-9 h-full right-1/3 transform rotate-6 shadow-sm"></div>
+                
+                <!-- Áreas verdes parques -->
+                <div class="absolute bg-[#C8DBB3] w-24 h-24 rounded-full top-8 right-16 filter blur-sm"></div>
+                <div class="absolute bg-[#D0E2B8] w-48 h-32 rounded-3xl bottom-4 -left-12 filter blur-sm"></div>
+                
+                <!-- Nomes de Ruas Fictícias de Apoio -->
+                <div class="absolute text-[9px] font-bold text-rust-light/50 font-mono tracking-wider top-[28%] left-[40%] transform -rotate-1 uppercase">Av. Dona Gertrudes</div>
+                <div class="absolute text-[9px] font-bold text-rust-light/50 font-mono tracking-wider bottom-[36%] left-[10%] transform rotate-3 uppercase">R. Nossa Sra. Aparecida</div>
+              </div>
+
+              <!-- Ponto Marcador Central da Padaria -->
+              <div class="absolute z-20 flex flex-col items-center animate-bounce-custom">
+                <div class="bg-red-650 bg-amber-500 text-cream-50 p-2.5 rounded-full shadow-2xl border-2 border-white flex items-center justify-center relative">
+                  <!-- Pulsar de sinal -->
+                  <span class="absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-60 animate-ping -z-10 scale-150"></span>
+                  <img src="assets/logo.png" alt="Padaria" class="w-8 h-8 rounded-full">
+                </div>
+                <div class="bg-rust-dark text-cream-50 font-serif font-bold text-xs mt-2.5 py-1 px-3 rounded-lg shadow-xl border border-rust-light flex items-center gap-1.5 whitespace-nowrap">
+                  <i data-lucide="store" class="w-3.5 h-3.5 text-amber-500"></i> Padaria
+                </div>
+              </div>
+
+              <!-- Controles de Zoom do Mapa Simulador -->
+              <div class="absolute bottom-4 right-4 flex flex-col gap-2 z-10">
+                <button type="button" class="w-9 h-9 rounded-xl bg-white hover:bg-cream-100 text-rust-dark font-bold border border-cream-350 shadow-md flex items-center justify-center transition active:scale-95" id="map-zoom-in" aria-label="Aumentar Zoom">
+                  <i data-lucide="plus" class="w-4 h-4"></i>
+                </button>
+                <button type="button" class="w-9 h-9 rounded-xl bg-white hover:bg-cream-100 text-rust-dark font-bold border border-cream-350 shadow-md flex items-center justify-center transition active:scale-95" id="map-zoom-out" aria-label="Diminuir Zoom">
+                  <i data-lucide="minus" class="w-4 h-4"></i>
+                </button>
+              </div>
+
+              <!-- Cartão de Localização Flutuante Informativo -->
+              <div class="absolute bottom-4 left-4 right-16 md:right-auto md:w-72 bg-cream-50/95 backdrop-blur-md p-3.5 rounded-2xl border border-cream-350 shadow-lg z-10 space-y-2">
+                <div class="flex items-center gap-2">
+                  <div class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 text-[10px] font-bold uppercase tracking-wider">Fácil de Achar</div>
+                  <span class="text-xs text-rust-light font-medium flex items-center gap-1"><i data-lucide="heart" class="w-3 h-3 text-red-500 fill-red-500"></i> São Lázaro</span>
+                </div>
+                <p class="text-xs font-semibold text-rust-deep leading-tight">Ao lado de referências locais clássicas, com vagas de veículo em toda a frente.</p>
+              </div>
+
+            </div>
+
+            <!-- Botão de Ação do Mapa -->
+            <a href="https://maps.google.com/?q=R.+Nossa+Sra.+Aparecida,+5+-+São+Lazaro,+São+João+da+Boa+Vista+-+SP,+13870-470" target="_blank" rel="noopener noreferrer" class="mt-3 bg-rust-dark hover:bg-rust-deep text-cream-50 font-bold py-3 px-6 rounded-2xl shadow-md hover:shadow-xl transition flex items-center justify-center gap-2 text-xs md:text-sm">
+              <i data-lucide="external-link" class="w-4 h-4 text-amber-500"></i> Abrir Direto no GPS / Waze do Celular
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RODAPÉ COMPACTO E ELEGANTE -->
+  <footer class="bg-rust-deep text-cream-200 border-t border-rust-dark mt-auto relative overflow-hidden">
+    <!-- Padrão geométrico suave no fundo do rodapé -->
+    <div class="absolute inset-0 bg-black/10 z-0"></div>
+
+    <div class="max-w-7xl mx-auto py-12 px-6 md:px-12 relative z-10 space-y-8">
+      
+      <!-- Linha Principal -->
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8 pt-4 pb-8 border-b border-rust-dark">
+        
+        <!-- Logo e Lema -->
+        <div class="flex flex-col items-center md:items-start gap-3 text-center md:text-left">
+          <div class="flex items-center gap-3">
+            <img src="assets/logo.png" alt="Logo Padaria" class="h-10 w-10 md:h-12 md:w-12 rounded-full border border-rust-light/30 bg-white/5 p-0.5">
+            <span class="font-serif font-bold text-xl text-cream-50 tracking-wider">PADARIA</span>
+          </div>
+          <p class="text-xs text-rust-light max-w-sm leading-normal">
+            Tradição familiar de fermentação natural lenta e carinho absoluto no preparo de cada fornada do seu pão quentinho diário.
+          </p>
+        </div>
+
+        <!-- Links Rápidos de Navegação -->
+        <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 text-xs font-semibold">
+          <a href="#produtos" class="hover:text-amber-500 transition-colors">Destaques da Vitrine</a>
+          <a href="#tradicao" class="hover:text-amber-500 transition-colors">História & Levain</a>
+          <a href="#monitor" class="hover:text-amber-500 transition-colors">Fornadas do Dia</a>
+          <a href="#informacoes" class="hover:text-amber-500 transition-colors">Contato & Horários</a>
+        </div>
+
+        <!-- Ícones Sociais (Instagram, Facebook) -->
+        <div class="flex items-center gap-4">
+          <a href="https://www.instagram.com/javiermarca/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-cream-50/5 hover:bg-amber-500 hover:text-white transition-all flex items-center justify-center border border-rust-light/20 shadow-md hover:scale-105" aria-label="Acompanhe pelo Instagram">
+            <i data-lucide="instagram" class="w-5 h-5"></i>
+          </a>
+          <a href="https://www.facebook.com/p/Boulangerie-Utopie-100064813143672/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-cream-50/5 hover:bg-amber-500 hover:text-white transition-all flex items-center justify-center border border-rust-light/20 shadow-md hover:scale-105" aria-label="Visite nosso Facebook">
+            <i data-lucide="facebook" class="w-5 h-5"></i>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Direitos autorais e créditos -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left text-[10px] md:text-xs text-rust-light">
+        <p>&copy; 2026 Padaria. Todos os direitos reservados. Feito com amor e rigor rústico tradicional.</p>
+        <p>Endereço: R. Nossa Sra. Aparecida, 5 - São Lázaro, São João da Boa Vista - SP</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- BOTÃO FLUTUANTE DE WHATSAPP / TELEFONE (5519111111111) -->
+  <a href="https://wa.me/5519111111111?text=Olá!%20Gostaria%20de%20fazer%20uma%20encomenda!" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20ba59] text-white p-4 rounded-full shadow-2xl hover:shadow-green-500/20 hover:-translate-y-1 transform transition duration-300 flex items-center justify-center group" aria-label="Enviar WhatsAppDireto">
+    <div class="absolute -top-1.5 -left-1.5 bg-amber-500 animate-pulse w-3 w-3 h-3 rounded-full border border-white"></div>
+    <i data-lucide="phone-call" class="w-6 h-6 animate-pulse group-hover:scale-110 transition"></i>
+    <span class="absolute pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity bg-rust-deep text-cream-50 font-bold text-xs py-1.5 px-3 rounded-lg -left-36 top-[15%] shadow-xl whitespace-nowrap border border-rust-dark">
+      WhatsApp: Encomende Já!
+    </span>
+  </a>
+
+  <!-- COMPORTAMENTO INTERATIVO DO SITE EM JAVASCRIPT PURO -->
+  <script src="app.js"></script>
+</body>
+</html>

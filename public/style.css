@@ -1,0 +1,92 @@
+/* Overrides e Estilos Customizados para a Padaria */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Compensa a barra de navegação flutuante */
+}
+
+/* Customização fina da barra de rolagem (Scrollbar) temática */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fdfaf6; /* base background */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8b5e3c; /* Theme medium brown */
+  border-radius: 5px;
+  border: 2px solid #fdfaf6;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #451a03; /* Theme dark brown */
+}
+
+/* Animações e Efeitos Especiais */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Marcador de Mapa Animado */
+@keyframes bounceCustom {
+  0%, 100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(-8px);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce-custom {
+  animation: bounceCustom 2.2s infinite;
+}
+
+/* Suavidade nas transições gerais */
+a, button, img {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms; /* Fixed slow transition duration */
+}
+
+/* Estilo de menu para evitar sobreposição */
+#mobile-menu {
+  /* Garante cor sólida e bloqueio total da página atrás */
+  background-color: #451a03 !important; /* Theme primary dark (#451a03) */
+  background-image: radial-gradient(circle at top right, rgba(217, 119, 6, 0.08), transparent 70%);
+}
+
+/* Estilo para links ativos ou com animações de toque */
+.mobile-nav-link {
+  transition: all 0.2s ease-in-out;
+}
+
+.mobile-nav-link:active {
+  background-color: rgba(217, 119, 6, 0.05);
+  padding-left: 12px;
+}
+
+/* Minimalist theme rules */
+.card-shadow {
+  box-shadow: 0 10px 30px -10px rgba(69, 26, 3, 0.15);
+}
+
+.glass {
+  background: rgba(255, 250, 240, 0.85);
+  backdrop-filter: blur(8px);
+}
+

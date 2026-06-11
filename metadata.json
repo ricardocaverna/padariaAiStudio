@@ -1,0 +1,6 @@
+{
+  "name": "Padaria",
+  "description": "Um site aconchegante de única página de padaria rústica moderna, responsivo, com monitor de fornadas ao vivo.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
