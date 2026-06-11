@@ -1,12 +1,20 @@
-# Site da padaria Padaria
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
+</div>
 
-Site institucional da padaria Padaria, localizado em algum lugar.
+# Run and deploy your AI Studio app
 
-## © Copyright
+This contains everything you need to run your app locally.
 
-Todos os direitos reservados. O código fonte deste site está disponível apenas para fins de consulta. Não é permitida a cópia, redistribuição ou modificação sem autorização expressa.
+View your app in AI Studio: https://ai.studio/apps/77d1971e-7c8f-4494-8ac0-990dadc5c5d5
 
-## Tecnologias utilizadas
+## Run Locally
 
-- HTML5 / CSS3 / JavaScript
-- Hospedado via GitHub Pages
+**Prerequisites:**  Node.js
+
+
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`
